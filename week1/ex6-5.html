@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>document.write() 활용</h3>
+    <hr>
+    <script> // 아래처럼 하면 한번에 뜨는데 함수로 출력 버튼을 직접만들어서 출력 버튼 눌러야지 출력이 되게 변경함
+        // document.write('<h3>Welcome!!</h3>');
+        // document.write('2 + 5 는 <br>');
+        // document.write("<mark>" + (2 + 5) + "입니다. </mark>");
+        function fn_write(){
+            document.write('<h3>Welcome!!</h3>');
+            document.write('2 + 5 는 <br>');
+            document.write("<mark>" + (2 + 5) + "입니다. </mark>");
+        }
+    </script>
+    <button onclick="fn_write()">출력</button>
+
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ID</title>
+</head>
+<body>
+    <button onclick="fn_changeSize('+')">텍스트 크기변경 + </button>
+    <button onclick="fn_changeSize('-')">텍스트 크기변경 - </button>
+    <p id="text1">이 텍스트의 크기를 변경하세요!!</p>
+
+    <button onclick="fn_visibility()">숨기기/보이기</button>
+    <div id = "box">이 내용을 숨기거나 보이게 하세요!!</div>
+
+    <img id="slider" src="../week2/day8/images/prod2.jpg" width="200px" height="240px" alt="">
+    <button onclick="fn_next()">다음 이미지</button>
+
+    <script>
+        let size = 20;
+        function fn_changeSize() {
+            size ++;
+            let text = document.getElementById("text1");
+            text.style.fontSize = size + "px";
+        }
+
+        // function fn_changeSizeDown() {
+        //     size --;
+        //     let text = document.getElementById("text1");
+        //     text.style.fontSize = size + "px";
+        // }
+
+        function fn_changeSize(flag) {
+            // 함수 하나만 쓰기
+            let text = document.getElementById("text1");
+            if(flag == '+') {
+                size ++;
+            } else {
+                size --;
+            }
+            text.style.fontSize = size + "px";
+        }
+
+        function fn_visibility() {
+            let box = document.querySelector("#box");
+            box.style.display = box.style.display === "none" ? "block" : "none";
+                                        // "==="의 의미 : 값도같고 타입도 같을때 true
+        }
+        // setInterval(fn_visibility, 1000);
+
+        let images = ["/week1/media/존 윅 4.png", "/week1/media/아바타 2.png", "/week1/media/리바운드.png"];
+        let currentIdx = 0;
+        function fn_next() {
+            let slider = document.getElementById("slider");
+            currentIdx = (currentIdx + 1) % images.length;
+            console.log(currentIdx);
+            slider.src = images[currentIdx];
+        }
+        setInterval(fn_next, 1000);
+    </script>
+</body>
+</html>

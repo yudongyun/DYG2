@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>image onload</title>
+    <script>
+        function fn_change(obj){
+            let img = document.getElementById('myImg');
+            img.onload = function (){
+                let span = document.getElementById('my_span');
+                span.innerHTML = img.width + "x" + img.height;
+            }
+            // 선택 index
+            let idx = obj.selectedIndex;
+            // 선택 index value (이미지 경로)
+            img.src = obj.options[idx].value;
+        }
+    </script>
+</head>
+<body>
+    <h3> 이미지 크기 출력</h3>
+    <select name="" id="sel" onchange="fn_change(this)">
+        <option value="media/네모 이미지.png">네모</option>
+        <option value="media/별 이미지.png">별</option>
+        <option value="media/하트 이미지.png">하트</option>
+    </select>
+    <span id="my_span">이미지 크기 출력</span>
+    <p><img src="media/네모 이미지.png" id="myImg" alt=""></p>
+</body>
+</html>

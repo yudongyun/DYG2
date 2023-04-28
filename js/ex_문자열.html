@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문자열 다루기</title>
+    <script>
+        let mc = "i like McDonald's";
+        // indexOf 문자열 위치 반환
+        console.log('indexOf :', mc.indexOf('M'));
+        // slice 문자열 자르기(인덱스, 인덱스)
+        console.log('slice :', mc.slice(3, 5));
+        console.log('slice :', mc.slice(3));
+        // substr 문자열 자르기(인덱스, 길이)
+        console.log('substr :', mc.substr(3, 5));
+        console.log('substr :', mc.substr(3));
+        // toUpper toLoper
+        console.log('toUpperCase :', mc.toUpperCase());
+        console.log('toLowerCase :', mc.toLowerCase());
+        // replace
+        console.log('replace :', mc.replace('like','hate'));
+        // trim
+        console.log('trim :', mc.trim());
+        // split
+        let arr = mc.split(" ");
+        for(let i = 0; i < arr.length; i++){
+            console.log(arr[i]);
+        }
+        // join
+        console.log('join :', arr.join('.'));
+
+
+        console.log( 1 + "2" + 3);
+        console.log( "2" * 5 ); // 이러면 2를 숫자로 인식해서 곱함
+        console.log( 1 + 2 + "10");
+
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>객체관련 함수</title>
+    <script>
+        let car = {
+            make : 'Toyota'
+            ,model : 'Camry'
+            ,year : 2021
+            ,color : 'Blue'
+        };
+        // key 값 접근
+        let keys = Object.keys(car);
+        console.log(keys)
+
+        // value 값 접근
+        let values = Object.values(car);
+        console.log(values);
+
+        // key : value 쌍으로 접근하기
+        let entries = Object.entries(car);
+        console.log(entries);
+
+        // 객체 끼리 결합
+        let carFeatures = {
+             airbags : true
+           , abs : true
+        }
+        let updateCar = Object.assign({}, car, carFeatures);
+        console.log(updateCar)
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

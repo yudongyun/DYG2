@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>그림판1</title>
+    <style>
+        body{ background-color: bisque;}
+        
+    </style>
+</head>
+<body>
+    <canvas id="myCanvas" width="400px" style="background-color: aquamarine;" height="300px"></canvas>
+    <table border="1">
+        <tr>
+            <td>컬러</td><td><input type="color" name="" id="p_color" value="blue" onchange="fn_change()"></td>
+        </tr>
+        <tr>
+            <td>사이즈</td><td><input type="number" min="2" max="30" id="p_size" value="2" onchange="fn_change()"></td>
+        </tr>
+        <tr>
+            <td><input type="button" value="그림 저장" onclick="fn_save()"></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="button" value="전체삭제" onclick="fn_all_re()"></td>
+            <td><input type="button" value="지우개" onclick="fn_er(this)"></td> 
+        </tr>
+    </table>
+    <script>
+        let canvas = document.getElementById('myCanvas');
+        let ctx = canvas.getContext('2d');
+        let ctr = canvas.getContext('2d');
+        ctx.lineWidth = 8;
+        ctx.strokeStyle = 'black';
+        ctx.lineCap = 'round';  // 마무리 부드럽게
+
+        let startX = 0, startY = 0;
+        let dargging = false;
+        function down(e){ startX = e.offsetX; startY = e.offsetY;
+                        dargging = true;
+                    }
+        function up(e){ dargging = false;}
+        function draw(curX, curY){
+            ctx.beginPath();
+            ctx.moveTo(startX, startY);
+            ctx.lineTo(curX, curY);
+            ctx.stroke();
+        }
+        function move(e){
+            if(!dargging){
+                return
+            }else{
+                let curX = e.offsetX; curY = e.offsetY;
+                draw(curX, curY);
+                startX = curX; startY = curY;
+            }
+        }
+
+        ctr.strokeStyle = 'white'
+        function redraw(cuxX, cuxY){
+            ctr.beginPath();
+            ctr.moveTo(startX, startY);
+            ctr.lineTo(cuxX, cuxY);
+            ctr.stroke();
+        }
+        function remove(e){
+            if(!dargging){
+                return
+            }else{
+                let cuxX = e.offsetX; cuxY = e.offsetY;
+                draw(cuxX, cuxY);
+                startX = cuxX; startY = cuxY;
+            }
+        }    
+        
+
+
+
+        function out(e) { dargging = false;}
+
+        function fn_all_re(){
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+
+        function fn_change(){
+        ctx.lineWidth = document.getElementById('p_size').value;
+        ctx.strokeStyle = document.getElementById('p_color').value;
+        }
+
+        function fn_save(){
+            let img = document.createElement('a');
+            img.download = 'myimg.png';
+            img.href = canvas.toDataURL("image/png");
+            img.click();
+        }
+        function fn_er(obj){
+            if(obj.value == '지우개'){
+                canvas.style.cursor = 'url(cursor.cur), auto';
+                obj.value = '펜슬'
+            }else{
+                canvas.style.cursor = 'default';
+                obj.value = '지우개'
+            }
+            
+        }
+
+        canvas.addEventListener("mousemove", function(e){move(e)});
+        canvas.addEventListener("mousedown", function(e){down(e)});
+        canvas.addEventListener("mouseup", function(e){up(e)});
+        canvas.addEventListener("mouseout", function(e){ out(e)});
+
+
+    </script>
+</body>
+</html>

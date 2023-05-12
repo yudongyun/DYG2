@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
+    <title>Document</title>
+    <script>
+        $(document).ready(function(){
+            $("button").click(function(){
+                // alert($('img').attr('src')); >> 알럿창에 사진 위치 띄우기
+                $('img').fadeOut('fast', function(){
+                    $('img').attr('src', '다음 이미지.png')
+                }).fadeIn('slow');
+                
+            });
+        });
+
+
+    </script>
+</head>
+<body>
+    <img src="../week3/day15/별 이미지.png" width="150px" alt="">
+    <button>attr</button>
+</body>
+</html>

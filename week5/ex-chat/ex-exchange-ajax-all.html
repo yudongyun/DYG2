@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
+    <script src="base.js"></script>
+    <title>Document</title>
+    <script>
+
+        let today = new Date();
+        // let str_today = `${today.getFullYear()}-${today.getMonth()+1}-${today.getDate()}`;
+        console.log('지역:', today.toLocaleDateString());
+        console.log('국제:', today.toISOString());
+        console.log('국제표준', today.toISOString().slice(0, 10));
+        let korea_today = new Date(today.getTime() + (9 * 60 * 60 * 1000)); // 국제 표준 + 9시간
+        let str_today = korea_today.toISOString().slice(0, 10);
+        console.log('우리나라 시간', korea_today);
+        console.log('우리나라 시간', korea_today.toISOString().slice(0, 10));
+        
+        // console.log(str_today)
+
+        let ctx;
+        $(document).ready(function(){
+            ctx = $('#myChart');
+
+
+            $('#st_dt').add('#end_dt').val(str_today);
+            $('#st_dt').add('#end_dt').change(function(){
+                // 조건 1 오늘날짜보다 크면 안됌
+                // 조건 2 start 가 end 보다 클수 없음 ..
+                let st = new Date($('#st_dt').val());
+                let end = new Date($('#end_dt').val());
+
+                if(today < st || today < end){
+                    alert("오늘 날짜보다 클 수 없음")
+                    $(this).val('');
+                    return
+                }
+                if(end < st){
+                    alert("종료 일자가 더 빠름");
+                    return;
+                }
+
+            })
+        })
+
+        $(document).ready(function(){
+            $('#btn').click(function(){
+                let st_dt = $('#st_dt').val()
+                let end_dt = $('#end_dt').val()
+                fn_ajax(st_dt, end_dt);
+            })
+        })
+
+        // 테스트용 fn_ajax('2023-01-01', '2023-05-22');
+        function fn_ajax(q_st, q_end){
+            let main_url = "https://api.exchangerate.host/timeseries";
+            $.ajax({
+                url : main_url
+                ,type : 'get'
+                ,data : {'start_date' : q_st, 'end_date' : q_end}
+                ,dataType : 'json'
+                ,success : function(res){
+                    // console.log(res);
+                    let q_data = fn_exchange_dataset(res)
+                    // let country = q_data['KRW'];
+                    let country = ['KRW', 'JPY', 'USD'];
+                    let sel_data = [];
+                    for(let i in country){
+                        sel_data.push(q_data[country[i]]);
+                    }
+                    
+                    console.log(country)
+                    let myChart = new Chart(ctx, {
+                        type : 'line'
+                        ,data : {
+                                labels : q_data.labels
+                                ,datasets : sel_data // 특정 국가 지정 셀 데이터 자체가 들어가면 된다.
+                        }, options : {
+                            element : { line : { tension : 0.1}}
+                        }// , animation : {duration : 5000 , easing : 'linear'}
+                    })
+                }
+            });
+        }
+
+
+        // base 파일 불러오기
+
+        /* function fn_exchange_dataset(p_data){
+            let rates = p_data['rates'];
+            console.log(rates);
+            let datalist = Object.keys(rates); // key 값만 가져옴 ( 날짜 )
+            let countrylist = Object.keys(rates[datalist[0]]) // 국가 이름만 가져옴
+            console.log('datalist : ', datalist)
+            console.log('countrylist : ', countrylist)
+            let datasets = {};
+            // 국가별로
+            for(let i = 0; i < countrylist.length; i++){
+                let temp_labels = []
+                let temp_data = []
+                // 국가별 날짜 데이터 만큼
+                for(let j = 0; j < datalist.length; j++){
+                    temp_labels.push(datalist[j]);
+                    temp_data.push(rates[datalist[j]][countrylist[i]]);
+                }
+                // 일자별 국가별로 날짜 : 값 이런식으로 데이터를 변환함
+                datasets[countrylist[i]] = {'label': countrylist[i], 'labels' : temp_labels, 'data' : temp_data}
+            }
+            datasets['labels'] = datalist;
+            console.log(datasets);
+            return datasets;
+        }  */
+        
+        
+        
+        
+
+
+        
+
+    </script>
+</head>
+<body>
+    <input type="date" id="st_dt">
+    <input type="date" id="end_dt">
+    <button type="button" id="btn">조회</button>
+    <h3>환율</h3>
+    <div style="width: 800px; height: 600px;">
+        <canvas id="myChart" width="700px" height="500px"></canvas>
+    </div>
+</body>
+</html>

@@ -5,15 +5,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script>
+        function fn_go(id){
+            location.href = 'http://127.0.0.1:3000/emp/' + id;
+        }
+    </script>
 </head>
 <body>
     <table border="1">
         <tr><th>ID</th><th>NAME</th></tr>
-        <%= data.forEach(row => { %>
+        <% data.forEach(row => { %>
         <tr>
-            <td><%= row[0] %></td><td><%= row[1] %></td>
+            <td onclick="fn_go('<%= row[0] %>')"><%= row[0] %></td>
+            <td><%= row[1] %></td>
         </tr>
-        <%= }); %>
+        <% }); %>
     </table>
 </body>
 </html>

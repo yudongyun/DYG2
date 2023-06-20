@@ -1,0 +1,205 @@
+/* 전체 화면을 꽉 채우도록 설정 */
+html, body {
+  height: 100%;
+}
+
+/* 배경 동영상 */
+#background-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* 동영상이 화면에 꽉 차도록 설정 */
+  opacity: 0.8;
+  z-index: -1;
+}
+
+
+body {
+  background-image: url('/검정배경.jpeg');
+  background-size: cover;
+  background-position: center;
+}
+
+
+/* 로고와 메뉴가 들어갈 영역 */
+header {
+  background-color: #ffffff;
+  color: #000000;
+  width: 27%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  padding: 10px 40px;
+  border-radius: 1rem;
+  opacity: 1; /* 투명도 설정 */
+}
+
+/* 로고와 메뉴 */
+.logo {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+nav {
+  display: flex;
+}
+
+nav a {
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+  margin-left: 30px;
+  font-size: 18px;
+}
+
+/* 본문 영역 */
+main {
+  padding: 20px;
+  color: white;
+}
+
+/* 슬라이드 컨테이너 */
+.slide-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.slide {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.slide.active {
+  display: block;
+}
+
+/* 슬라이드 네비게이션 */
+.prev-button {
+  position: absolute;
+  left: 2%;
+  transform: translateX(-50%);
+  top: 50%;
+}
+
+.next-button {
+  position: absolute;
+  left: 98%;
+  transform: translateX(-50%);
+  top: 50%;
+}
+
+.slide-nav button {
+  margin: 0 5px;
+}
+
+#div_id {
+  height: 500px; /* 원하는 높이로 설정 */
+  overflow-y: scroll;
+}
+
+.title {
+  font-size: 17px;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  color: #000000;
+}
+
+.description {
+  font-size: 12px;
+  font-family: Arial, sans-serif;
+  color: #484545;
+}
+
+#q_input {
+  width: 300px; /* 원하는 너비 값으로 변경 */
+  height: 50px; /* 원하는 높이 값으로 변경 */
+  font-size: 20px; /* 원하는 폰트 크기로 변경 */
+}
+
+#btn1 {
+  width: 150px; /* 원하는 너비 값으로 변경 */
+  height: 50px; /* 원하는 높이 값으로 변경 */
+  font-size: 20px; /* 원하는 폰트 크기로 변경 */
+}
+
+
+
+.exchange-calc,
+.rand-calc,
+.kospi-calc,
+.kosdak-calc,
+.news-card1 {
+  position: fixed;
+  left: 30%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px 16px;
+  width: 800px;
+  height: 600px;
+  border-radius: 1rem;
+  background-color: rgb(239, 224, 224);
+  z-index: 101;
+  opacity: 0.9;
+  animation: appear 0.5s ease-in-out;
+  font-size: 20px; /* 원하는 크기로 조정하세요 */
+  font-family: 'Courier New', Courier, monospace; /* 원하는 폰트로 조정하세요 */
+  color: black; /* 원하는 글자 색상으로 조정하세요 */
+  border: 2px solid black; /* 테두리를 검은색 선으로 설정 */
+}
+
+.exchange-calc input[type="text"]
+.exchange-calc input[type="text"],
+.exchange-calc button {
+    font-size: 20px; /* 원하는 크기로 조정하세요 */
+    padding: 20px; /* 원하는 값으로 조정하세요 */
+  }
+
+  select#currencySelect {
+    font-size: 20px; /* 원하는 크기로 조정하세요 */
+    padding: 20px; /* 원하는 값으로 조정하세요 */
+  }
+
+  input#deposit {
+    font-size: 20px; /* 원하는 크기로 조정하세요 */
+    padding: 20px; /* 원하는 값으로 조정하세요 */
+  }
+
+  input#recipient {
+    font-size: 20px; /* 원하는 크기로 조정하세요 */
+    padding: 20px; /* 원하는 값으로 조정하세요 */
+  }
+  
+  .text-logo{
+    position: fixed;
+    left: 60%;
+    top: 30%;
+    opacity: 0;
+    animation: slide-up 1s forwards infinite;
+    font-size: 40px;
+  }
+
+  @keyframes slide-up {
+    0% {
+      opacity: 0;
+      transform: translateY(50px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

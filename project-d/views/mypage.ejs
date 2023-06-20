@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Page</title>
+
+    <video id="background-video" autoplay loop muted>
+        <source src="/North America 21_9 4k _ USA and Canada.mp4" type="video/mp4">
+    </video>
+
+    <style>
+        /* 배경 동영상 */
+        #background-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* 동영상이 화면에 꽉 차도록 설정 */
+            opacity: 0.8;
+            z-index: -1;
+        }
+
+        body {
+            background-image: url('/검정배경.jpeg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .wrapper {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .container {
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 0px 20px 20px rgb(33, 194, 140);
+            position: absolute;
+            width: 500px;
+            height: 350px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        header {
+            background-color: #ffffff;
+            color: #000000;
+            width: 27%;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            padding: 10px 40px;
+            border-radius: 1rem;
+            opacity: 1;
+            /* 투명도 설정 */
+        }
+
+        /* 로고와 메뉴 */
+        .logo {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        nav {
+            display: flex;
+        }
+
+        nav a {
+            color: rgb(0, 0, 0);
+            text-decoration: none;
+            margin-left: 30px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<header>
+    <div class="logo" id="mainlogo">
+        <a href="http://localhost:3000/">ECONO[VIEW]</a>
+    </div>
+
+    <nav>
+        <a href="/loginPage">로그인 </a>
+        <a href="/signPage">회원가입</a>
+        <a href="/mypage">마이페이지</a>
+        <a href="https://www.instargram.com"><img src="/인스타그램.png" alt="instargram"
+                style="width: 25px; height: 25px;"></a>
+        <a href="https://www.twitter.com"><img src="/트위터.png" alt="twitter" style="width: 25px; height: 25px;"></a>
+    </nav>
+</header>
+
+<body>
+
+
+    <div class="wrapper">
+        <div class="container">
+            <div class="sign-in-container">
+                <h1>My Page</h1>
+                <p>사용중인 아이디: <%= user_id %>
+                </p>
+                <p>사용중인 닉네임: <%= user_nm %>
+                </p>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
